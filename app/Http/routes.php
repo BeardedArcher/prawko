@@ -12,8 +12,9 @@
 */
 
 Route::get('/', 'WelcomeController@index');
-
 Route::get('home', 'HomeController@index');
+Route::get('pytania-abc', 'QuestionController@abc');
+Route::get('pytania-tak-nie', 'QuestionController@yesno');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
