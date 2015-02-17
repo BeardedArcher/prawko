@@ -16,7 +16,8 @@ Route::get('home', 'HomeController@index');
 Route::get('pytania-abc', 'QuestionController@abc');
 Route::get('pytania-tak-nie', 'QuestionController@yesno');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('admin/logowanie', 'Admin\AuthController@getLogin');
+Route::post('admin/logowanie', 'Admin\AuthController@postLogin');
+Route::get('admin/rejestracja', 'Admin\AuthController@getRegister');
+Route::post('admin/rejestracja', 'Admin\AuthController@postRegister');
+Route::get('admin/wyloguj', 'Admin\AuthController@getLogout');
