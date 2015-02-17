@@ -481,41 +481,37 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 	 * Create a new model instance that is existing.
 	 *
 	 * @param  array  $attributes
+	 * @param  string|null  $connection
 	 * @return static
 	 */
-	public function newFromBuilder($attributes = array())
+	public function newFromBuilder($attributes = array(), $connection = null)
 	{
-		$instance = $this->newInstance(array(), true);
+		$model = $this->newInstance(array(), true);
 
-		$instance->setRawAttributes((array) $attributes, true);
+		$model->setRawAttributes((array) $attributes, true);
 
-		return $instance;
+		$model->setConnection($connection ?: $this->connection);
+
+		return $model;
 	}
 
 	/**
 	 * Create a collection of models from plain arrays.
 	 *
 	 * @param  array  $items
-	 * @param  string  $connection
+	 * @param  string|null  $connection
 	 * @return \Illuminate\Database\Eloquent\Collection
 	 */
 	public static function hydrate(array $items, $connection = null)
 	{
-		$collection = with($instance = new static)->newCollection();
+		$instance = (new static)->setConnection($connection);
 
-		foreach ($items as $item)
+		$collection = $instance->newCollection($items);
+
+		return $collection->map(function ($item) use ($instance)
 		{
-			$model = $instance->newFromBuilder($item);
-
-			if ( ! is_null($connection))
-			{
-				$model->setConnection($connection);
-			}
-
-			$collection->push($model);
-		}
-
-		return $collection;
+			return $instance->newFromBuilder($item);
+		});
 	}
 
 	/**
@@ -523,17 +519,12 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 	 *
 	 * @param  string  $query
 	 * @param  array  $bindings
-	 * @param  string  $connection
+	 * @param  string|null  $connection
 	 * @return \Illuminate\Database\Eloquent\Collection
 	 */
 	public static function hydrateRaw($query, $bindings = array(), $connection = null)
 	{
-		$instance = new static;
-
-		if ( ! is_null($connection))
-		{
-			$instance->setConnection($connection);
-		}
+		$instance = (new static)->setConnection($connection);
 
 		$items = $instance->getConnection()->select($query, $bindings);
 
@@ -644,7 +635,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 	/**
 	 * Begin querying the model on a given connection.
 	 *
-	 * @param  string  $connection
+	 * @param  string|null  $connection
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public static function on($connection = null)
@@ -712,22 +703,6 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 		if ( ! is_null($model = static::find($id, $columns))) return $model;
 
 		return new static;
-	}
-
-	/**
-	 * Find a model by its primary key or throw an exception.
-	 *
-	 * @param  mixed  $id
-	 * @param  array  $columns
-	 * @return \Illuminate\Support\Collection|static
-	 *
-	 * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
-	 */
-	public static function findOrFail($id, $columns = array('*'))
-	{
-		if ( ! is_null($model = static::find($id, $columns))) return $model;
-
-		throw (new ModelNotFoundException)->setModel(get_called_class());
 	}
 
 	/**
@@ -1476,7 +1451,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
 		// To sync all of the relationships to the database, we will simply spin through
 		// the relationships and save each model via this "push" method, which allows
-		// us to recurs into all of these nested relations for this model instance.
+		// us to recurse into all of these nested relations for the model instance.
 		foreach ($this->relations as $models)
 		{
 			$models = $models instanceof Collection
@@ -1502,7 +1477,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 		$query = $this->newQueryWithoutScopes();
 
 		// If the "saving" event returns false we'll bail out of the save and return
-		// false, indicating that the save failed. This gives an opportunities to
+		// false, indicating that the save failed. This provides a chance for any
 		// listeners to cancel save operations if validations fail or whatever.
 		if ($this->fireModelEvent('saving') === false)
 		{
@@ -1736,6 +1711,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 	 */
 	public function touch()
 	{
+		if ( ! $this->timestamps) return false;
+
 		$this->updateTimestamps();
 
 		return $this->save();

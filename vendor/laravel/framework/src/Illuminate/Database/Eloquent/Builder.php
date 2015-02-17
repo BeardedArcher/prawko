@@ -105,13 +105,22 @@ class Builder {
 	 *
 	 * @param  mixed  $id
 	 * @param  array  $columns
-	 * @return \Illuminate\Database\Eloquent\Model|static
+	 * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
 	 *
 	 * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
 	 */
 	public function findOrFail($id, $columns = array('*'))
 	{
-		if ( ! is_null($model = $this->find($id, $columns))) return $model;
+		$result = $this->find($id, $columns);
+
+		if (is_array($id))
+		{
+			if (count($result) == count(array_unique($id))) return $result;
+		}
+		elseif ( ! is_null($result))
+		{
+			return $result;
+		}
 
 		throw (new ModelNotFoundException)->setModel(get_class($this->model));
 	}
@@ -368,26 +377,11 @@ class Builder {
 	 */
 	public function getModels($columns = array('*'))
 	{
-		// First, we will simply get the raw results from the query builders which we
-		// can use to populate an array with Eloquent models. We will pass columns
-		// that should be selected as well, which are typically just everything.
 		$results = $this->query->get($columns);
 
 		$connection = $this->model->getConnectionName();
 
-		$models = array();
-
-		// Once we have the results, we can spin through them and instantiate a fresh
-		// model instance for each records we retrieved from the database. We will
-		// also set the proper connection name for the model after we create it.
-		foreach ($results as $result)
-		{
-			$models[] = $model = $this->model->newFromBuilder($result);
-
-			$model->setConnection($connection);
-		}
-
-		return $models;
+		return $this->model->hydrate($results, $connection)->all();
 	}
 
 	/**
@@ -579,7 +573,7 @@ class Builder {
 	 *
 	 * @param  string  $relations
 	 * @param  string  $operator
-	 * @param  integer $count
+	 * @param  int     $count
 	 * @param  string  $boolean
 	 * @param  \Closure  $callback
 	 * @return \Illuminate\Database\Eloquent\Builder|static
@@ -836,11 +830,13 @@ class Builder {
 	 * Set the underlying query builder instance.
 	 *
 	 * @param  \Illuminate\Database\Query\Builder  $query
-	 * @return void
+	 * @return $this
 	 */
 	public function setQuery($query)
 	{
 		$this->query = $query;
+
+		return $this;
 	}
 
 	/**
@@ -857,11 +853,13 @@ class Builder {
 	 * Set the relationships being eagerly loaded.
 	 *
 	 * @param  array  $eagerLoad
-	 * @return void
+	 * @return $this
 	 */
 	public function setEagerLoads(array $eagerLoad)
 	{
 		$this->eagerLoad = $eagerLoad;
+
+		return $this;
 	}
 
 	/**

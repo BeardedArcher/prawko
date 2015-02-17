@@ -101,6 +101,18 @@ class Kernel implements KernelContract {
 	}
 
 	/**
+	 * Terminate the application.
+	 *
+	 * @param  \Symfony\Component\Console\Input\InputInterface  $input
+	 * @param  int  $status
+	 * @return void
+	 */
+	public function terminate($input, $status)
+	{
+		$this->app->terminate();
+	}
+
+	/**
 	 * Define the application's command schedule.
 	 *
 	 * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
@@ -180,24 +192,7 @@ class Kernel implements KernelContract {
 			$this->app->bootstrapWith($this->bootstrappers());
 		}
 
-		// If we are just calling another queue command, we will only load the queue
-		// service provider. This saves a lot of file loading as we don't need to
-		// load the providers with commands for every possible console command.
-		$this->isCallingAQueueCommand()
-					? $this->app->loadDeferredProvider('queue')
-					: $this->app->loadDeferredProviders();
-	}
-
-	/**
-	 * Determine if the console is calling a queue command.
-	 *
-	 * @return bool
-	 */
-	protected function isCallingAQueueCommand()
-	{
-		return in_array((new ArgvInput)->getFirstArgument(), [
-			'queue:listen', 'queue:work'
-		]);
+		$this->app->loadDeferredProviders();
 	}
 
 	/**

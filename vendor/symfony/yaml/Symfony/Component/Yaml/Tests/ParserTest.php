@@ -136,6 +136,14 @@ EOF;
         $tests['Literal block chomping strip with multiple trailing newlines'] = array($expected, $yaml);
 
         $yaml = <<<'EOF'
+{}
+
+
+EOF;
+        $expected = array();
+        $tests['Literal block chomping strip with multiple trailing newlines after a 1-liner'] = array($expected, $yaml);
+
+        $yaml = <<<'EOF'
 foo: |-
     one
     two
@@ -474,6 +482,22 @@ collection:
 -item1
 -item2
 -item3
+
+EOF;
+
+        $this->parser->parse($yaml);
+    }
+
+    /**
+     * @expectedException \Symfony\Component\Yaml\Exception\ParseException
+     */
+    public function testShortcutKeyUnindentedCollectionException()
+    {
+        $yaml = <<<EOF
+
+collection:
+-  key: foo
+  foo: bar
 
 EOF;
 
