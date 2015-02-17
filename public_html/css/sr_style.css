@@ -1,0 +1,103 @@
+html, body, .container {
+    height: 100%;
+}
+
+.container {
+    position: relative;
+}
+
+.login-panel {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    border-radius: 10px;
+    height: 350px;
+    width: 500px;
+    padding: 15px;
+    
+    background: #3690DE;
+}
+
+.logowanie-test {
+    text-align: center;
+    color: #ECECEC;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 48px;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+.input-group {
+    width: 70%;
+    margin: 0 auto;
+}
+
+input.form-control {
+    border: none;
+    border-top: 1px solid #003869;
+    border-bottom: 1px solid #95CDFF;
+    border-right: none;
+    background-color: #1464A8;
+    height: 40px;
+    color: white;
+}
+
+input.form-control:focus {
+    border: none;
+    border-top: 1px solid #003869;
+    border-bottom: 1px solid #95CDFF;
+    border-right: none;
+    box-shadow: none;
+    webkit-box-shadow: none;
+    color: white;
+}
+
+.input-group-addon {
+    color: #003869;
+    background-color: #1464A8;
+    border-top: 1px solid #003869;
+    border-bottom: 1px solid #95CDFF;
+    border-left: none;
+}
+.input-group-addon, .form-control {
+    border-radius: 0px;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #B5CBDE;
+    font-style: italic;
+}
+
+.right-button {
+    /*float: right;*/
+/*    margin-right: 70px;*/
+    color: white;
+    border: none;
+    background: #1464A8;
+}
+
+.right-button:hover {
+    color: #1464A8;
+    color: white;
+    background-color: #1A6DB5;
+}
+
+.btn-default {
+    text-shadow: none;
+}
+
+.lost-password a {
+    font-size: 12px;
+    text-decoration: none;
+    color: white;
+    margin-left: 73px;
+
+}
+
+.lost-password a:hover {
+    color: #D0E9FF;
+}
+
+.zaloguj {
+    padding-left: 145px;
+}
