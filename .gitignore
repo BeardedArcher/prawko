@@ -5,3 +5,7 @@
 .idea/
 .idea/*
 /nbproject/private/
+/nbproject/*
+/nbproject/
+/vendor/
+/vendor/*

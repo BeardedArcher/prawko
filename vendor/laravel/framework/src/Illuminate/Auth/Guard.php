@@ -2,6 +2,7 @@
 
 use RuntimeException;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Contracts\Auth\UserProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Contracts\Auth\Guard as GuardContract;
@@ -35,7 +36,7 @@ class Guard implements GuardContract {
 	/**
 	 * The user provider implementation.
 	 *
-	 * @var \Illuminate\Auth\UserProviderInterface
+	 * @var \Illuminate\Contracts\Auth\UserProvider
 	 */
 	protected $provider;
 
@@ -84,12 +85,12 @@ class Guard implements GuardContract {
 	/**
 	 * Create a new authentication guard.
 	 *
-	 * @param  \Illuminate\Auth\UserProviderInterface  $provider
+	 * @param  \Illuminate\Contracts\Auth\UserProvider  $provider
 	 * @param  \Symfony\Component\HttpFoundation\Session\SessionInterface  $session
 	 * @param  \Symfony\Component\HttpFoundation\Request  $request
 	 * @return void
 	 */
-	public function __construct(UserProviderInterface $provider,
+	public function __construct(UserProvider $provider,
 								SessionInterface $session,
 								Request $request = null)
 	{
@@ -155,8 +156,13 @@ class Guard implements GuardContract {
 		if (is_null($user) && ! is_null($recaller))
 		{
 			$user = $this->getUserByRecaller($recaller);
+			
+			if ($user)
+			{
+				$this->updateSession($user->getAuthIdentifier());
 
-			if ($user) $this->fireLoginEvent($user, true);
+				$this->fireLoginEvent($user, true);
+			}
 		}
 
 		return $this->user = $user;
@@ -656,7 +662,7 @@ class Guard implements GuardContract {
 	/**
 	 * Get the user provider used by the guard.
 	 *
-	 * @return \Illuminate\Auth\UserProviderInterface
+	 * @return \Illuminate\Contracts\Auth\UserProvider
 	 */
 	public function getProvider()
 	{
@@ -666,10 +672,10 @@ class Guard implements GuardContract {
 	/**
 	 * Set the user provider used by the guard.
 	 *
-	 * @param  \Illuminate\Auth\UserProviderInterface  $provider
+	 * @param  \Illuminate\Contracts\Auth\UserProvider  $provider
 	 * @return void
 	 */
-	public function setProvider(UserProviderInterface $provider)
+	public function setProvider(UserProvider $provider)
 	{
 		$this->provider = $provider;
 	}

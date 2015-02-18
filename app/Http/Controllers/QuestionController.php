@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 class QuestionController extends Controller {
 
-    public function abc()
+    public function showQuestions()
     {
         $itemsPerPage = \Input::get('ilosc');
         $questions = \App\QuestionsAbc::All();
 
-        return view('questions', array(
+        
+        
+        return view('singleQuestion', array(
             'questions' => $questions
         ));
     }
@@ -22,6 +24,14 @@ class QuestionController extends Controller {
     public function yesno()
     {
         $itemsPerPage = \Input::get('ilosc');
+        
+        return view('addYesNoQuestion');
     }
+    
+    public function addQuestion()
+    {
+        return view('addQuestionPanel');
+    }
+    
 
 }

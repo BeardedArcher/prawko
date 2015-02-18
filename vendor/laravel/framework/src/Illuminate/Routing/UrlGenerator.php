@@ -331,7 +331,7 @@ class UrlGenerator implements UrlGeneratorContract {
 	 */
 	protected function addQueryString($uri, array $parameters)
 	{
-		// If the URI has a fragmnet, we will move it to the end of the URI since it will
+		// If the URI has a fragment, we will move it to the end of the URI since it will
 		// need to come after any query string that may be added to the URL else it is
 		// not going to be available. We will remove it then append it back on here.
 		if ( ! is_null($fragment = parse_url($uri, PHP_URL_FRAGMENT)))
@@ -518,6 +518,8 @@ class UrlGenerator implements UrlGeneratorContract {
 	 * @param  mixed   $parameters
 	 * @param  bool    $absolute
 	 * @return string
+	 * 
+	 * @throws \InvalidArgumentException
 	 */
 	public function action($action, $parameters = array(), $absolute = true)
 	{
@@ -529,8 +531,13 @@ class UrlGenerator implements UrlGeneratorContract {
 		{
 			$action = trim($action, '\\');
 		}
-
-		return $this->toRoute($this->routes->getByAction($action), $parameters, $absolute);
+	
+		if ( ! is_null($route = $this->routes->getByAction($action)))
+		{
+			 return $this->toRoute($route, $parameters, $absolute);
+		}
+		
+		throw new InvalidArgumentException("Action {$action} not defined.");
 	}
 
 	/**

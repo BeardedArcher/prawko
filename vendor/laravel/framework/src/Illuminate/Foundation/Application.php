@@ -20,7 +20,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 *
 	 * @var string
 	 */
-	const VERSION = '5.0-dev';
+	const VERSION = '5.0.6';
 
 	/**
 	 * The base path for the Laravel installation.
@@ -58,6 +58,13 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	protected $bootedCallbacks = array();
 
 	/**
+	 * The array of terminating callbacks.
+	 *
+	 * @var array
+	 */
+	protected $terminatingCallbacks = array();
+
+	/**
 	 * All of the registered service providers.
 	 *
 	 * @var array
@@ -77,6 +84,13 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 * @var array
 	 */
 	protected $deferredServices = array();
+
+	/**
+	 * The custom storage path defined by the developer.
+	 *
+	 * @var string
+	 */
+	protected $storagePath;
 
 	/**
 	 * The environment file to load during bootstrapping.
@@ -149,9 +163,36 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 		foreach ($bootstrappers as $bootstrapper)
 		{
 			$this->make($bootstrapper)->bootstrap($this);
+
+			$this['events']->fire('bootstrapped: '.$bootstrapper, [$this]);
 		}
 
 		$this->hasBeenBootstrapped = true;
+	}
+
+	/**
+	 * Register a callback to run after loading the environment.
+	 *
+	 * @param  \Closure  $callback
+	 * @return void
+	 */
+	public function afterLoadingEnvironment(Closure $callback)
+	{
+		return $this->afterBootstrapping(
+			'Illuminate\Foundation\Bootstrap\DetectEnvironment', $callback
+		);
+	}
+
+	/**
+	 * Register a callback to run after a bootstrapper.
+	 *
+	 * @param  string  $bootstrapper
+	 * @param  Closure  $callback
+	 * @return void
+	 */
+	public function afterBootstrapping($bootstrapper, Closure $callback)
+	{
+		$this['events']->listen('bootstrapped: '.$bootstrapper, $callback);
 	}
 
 	/**
@@ -251,7 +292,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 */
 	public function publicPath()
 	{
-		return $this->basePath.'/public_html';
+		return $this->basePath.'/public';
 	}
 
 	/**
@@ -261,7 +302,22 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 */
 	public function storagePath()
 	{
-		return $this->basePath.'/storage';
+		return $this->storagePath ?: $this->basePath.'/storage';
+	}
+
+	/**
+	 * Set the storage directory.
+	 *
+	 * @param  string  $path
+	 * @return $this
+	 */
+	public function useStoragePath($path)
+	{
+		$this->storagePath = $path;
+
+		$this->instance('path.storage', $path);
+
+		return $this;
 	}
 
 	/**
@@ -481,6 +537,11 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 	 */
 	public function loadDeferredProvider($service)
 	{
+		if ( ! isset($this->deferredServices[$service]))
+		{
+			return;
+		}
+
 		$provider = $this->deferredServices[$service];
 
 		// If the service provider has not already been loaded and registered we can
@@ -723,6 +784,32 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 		}
 
 		throw new HttpException($code, $message, null, $headers);
+	}
+
+	/**
+	 * Register a terminating callback with the application.
+	 *
+	 * @param  \Closure  $callback
+	 * @return $this
+	 */
+	public function terminating(Closure $callback)
+	{
+		$this->terminatingCallbacks[] = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Terminate the application.
+	 *
+	 * @return void
+	 */
+	public function terminate()
+	{
+		foreach ($this->terminatingCallbacks as $terminating)
+		{
+			$this->call($terminating);
+		}
 	}
 
 	/**

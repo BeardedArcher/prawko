@@ -47,10 +47,10 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="http://gra.pandzia.pl/admin">Logowanie</a></li>
-                                        <li><a href="http://gra.pandzia.pl/singleQuestion">Odpowiedz na pytanie</a></li>
-                                        <li><a href="http://gra.pandzia.pl/addQuestionPanel">Dodaj pytanie</a></li>
-                                        <li><a href="http://gra.pandzia.pl/addMultiQuestion">Dodaj pytanie multi</a></li>
-                                        <li><a href="http://gra.pandzia.pl/addYesNoQuestion">Dodaj pytanie tak/nie</a></li>
+                                        <li><a href="http://gra.pandzia.pl/pojedynczePytanie">Odpowiedz na pytanie</a></li>
+                                        <li><a href="http://gra.pandzia.pl/dodajPytaniePanel">Dodaj pytanie</a></li>
+                                        <li><a href="http://gra.pandzia.pl/dodajPytanieMulti">Dodaj pytanie multi</a></li>
+                                        <li><a href="http://gra.pandzia.pl/dodajPytanieTakNie">Dodaj pytanie tak/nie</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
