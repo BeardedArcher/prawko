@@ -1,0 +1,261 @@
+.bg-primary {
+    padding: 15px;
+    margin-top: 30px;
+}
+
+.questions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.yesno {
+    margin-left: 30px;
+}
+
+.multi {
+    margin-right: 30px;
+}
+
+.tip {
+    margin-top: 30px;
+}
+
+.form-multi {
+    float: left;
+}
+
+.input-group {
+    margin: 10px 10px;
+}
+
+.form-yesno {
+    float: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.panel-title {
+    font-size: 10px;
+}
+
+.main-1 {
+    font-size: 14px;
+}
+
+.panel-body {
+    font-size: 10px;
+}
+
+#fileupload {
+    padding: 10px;
+}
+
+.button-2 {
+    float: right;
+}
+
+.h-1 {
+    font-size: 14px;
+    color: red;
+}
+
+.add-foto {
+    display: none;
+}
+
+.answer-true {
+    margin-bottom: 15px;
+    text-align: center;
+    color: white !important;
+    background-image: linear-gradient(to bottom,#5cb85c 0,#419641 100%) !important;
+}
+
+.answer-false {
+    margin-bottom: 15px;
+    text-align: center;
+    color: white !important;
+    background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%) !important;
+}
+
+.answer-no-answer {
+    margin-bottom: 15px;
+    text-align: center;
+    color: white !important;
+    background-image: linear-gradient(to bottom,#DED25B 0,#D2772A 100%) !important;
+}
+
+#next-question {
+    float: right;
+    width: 200px;
+}
+
+#prev-question {
+    float: left;
+    width: 200px;
+}
+
+.buttons-next-prev {
+    margin-top: 15px;
+    
+}
+
+.question-panel {
+    color: white !important;
+    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%) !important;
+}
+
+html, body {
+    margin: 0;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.egzam-question-box {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.egzam-question {
+    display: inline-block;
+    background-color: #e6e6e6;
+    width: 1600px;
+    height: 900px;
+}
+
+.question-picture-panel {
+    text-align: left;
+    margin-left: 15px;
+    background-image: url(/img/questions/question-1.png);
+    background-repeat: no-repeat;
+    background-size: 800px;
+    width: 800px;
+    height: 470px;
+    float: left;
+}
+
+.question-top-panel-td {
+    width: 210px;
+    height: 70px;
+    margin: 10px;
+    padding: 3px;
+    text-align: right;
+}
+
+.question-top-finish-td {
+    width: 280px;
+    text-align: right;
+}
+
+.question-time-panel-basic {
+    margin-left: 20px;
+    float: left;
+}
+
+.question-time-panel-specialized {
+    float: left;
+    margin-left: 30px;
+}
+
+.question-bottom-panel {
+    clear: both;
+    overflow: hidden;
+}
+
+.question-time-panel {
+    overflow: hidden;
+}
+
+.question-time-panel-headling {
+    margin-bottom: 15px;
+}
+
+.ile-z-ilu {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    padding: 8px;
+    background-color: blue;
+}
+
+.question-time-panel-countdown {
+    clear: left;
+    float: left;
+    margin-left: 20px;
+    margin-top: 100px;
+    width: 300px;
+    text-align: center;
+}
+
+.time-box {
+    width: 150px;
+}
+
+.small-box {
+    width: 40px;
+}
+
+.point-box {
+    display: table-cell;
+    vertical-align: middle;
+    height: 40px;
+    float: left;
+    color: white;
+    background-color: blue;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.question-time-next-question {
+    clear: both;
+    float: left;
+    margin-left: 20px;
+    width: 300px;
+}
+
+.question-text-panel {
+    margin-left: 20px;
+    float: left;
+    font-family: "Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.question-answer-panel {
+    margin-left: 20px;
+    margin-top: 100px;
+    clear: left;
+    float: left;
+    width: 800px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.left {
+    float: left;
+    width: 200px;
+}
+
+.right {
+    float: right;
+    width: 200px;
+}
+
+.question-time-panel-no-answer {
+    float: left;
+    clear: left;
+    margin-left: 20px;
+    margin-top: 130px;
+}
+
+.question-time-panel-no-answer p {
+    padding: 15px;
+    border-radius: 5px;
+    width: 300px;
+}

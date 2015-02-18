@@ -27,12 +27,12 @@ html, body, .container {
     margin-top: 15px;
 }
 
-.input-group {
+.input-group-my {
     width: 70%;
     margin: 0 auto;
 }
 
-input.form-control {
+input.form-login {
     border: none;
     border-top: 1px solid #003869;
     border-bottom: 1px solid #95CDFF;
@@ -42,7 +42,7 @@ input.form-control {
     color: white;
 }
 
-input.form-control:focus {
+input.form-login:focus {
     border: none;
     border-top: 1px solid #003869;
     border-bottom: 1px solid #95CDFF;
@@ -52,18 +52,18 @@ input.form-control:focus {
     color: white;
 }
 
-.input-group-addon {
+.form-login-addon {
     color: #003869;
     background-color: #1464A8;
     border-top: 1px solid #003869;
     border-bottom: 1px solid #95CDFF;
     border-left: none;
 }
-.input-group-addon, .form-control {
+.form-login-addon, .form-login {
     border-radius: 0px;
 }
 
-.form-control::-webkit-input-placeholder {
+.form-login::-webkit-input-placeholder {
     color: #B5CBDE;
     font-style: italic;
 }

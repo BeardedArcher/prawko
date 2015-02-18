@@ -11,8 +11,27 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-Route::get('home', 'HomeController@index');
+Route::get('/admin', function(){
+    return view('/auth/login');
+});
+
+Route::get('/singleQuestion', function(){
+    return view('singleQuestion');
+});
+
+Route::get('/addQuestionPanel', function(){
+    return view('addQuestionPanel');
+});
+
+Route::get('/addMultiQuestion', function(){
+    return view('addMultiQuestion');
+});
+
+Route::get('/addYesNoQuestion', function(){
+    return view('addYesNoQuestion');
+});
+
+//Route::get('home', 'HomeController@index');
 Route::get('pytania-abc', 'QuestionController@abc');
 Route::get('pytania-tak-nie', 'QuestionController@yesno');
 
