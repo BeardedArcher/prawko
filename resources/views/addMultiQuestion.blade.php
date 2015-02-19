@@ -12,27 +12,26 @@
                 <div class='form-group'>
                     <span class="btn btn-info fileinput-button add-pic">
                         <i class="glyphicon glyphicon-picture"></i>
-                        <span>Dodaj grafikę dotycząca pytania</span>
+                        <span>Dodaj grafikę dotycząca pytania (opcjonalnie) </span>
                     </span>
                 </div>
 
-                <div class="panel panel-default add-foto">
-                    <div class="panel-heading">
-                        <h3 class="panel-title main-1"><strong>Dodaj grafikę dotycząca pytania</strong></h3>
-                    </div>
-                    
+                <form enctype="multipart/form-data" action="dodaj-pytanie-multi" method="POST">
+                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                    <input type="hidden" name="MAX_FILE_SIZE" value="500000">
+                    Wybierz plik <input name="uploadedfile" type="file">
+                    <input type="submit" value="Dodaj">
+                </form>
                 
-                    
-                    <br>
-                    
-                        <div class="panel-heading">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                             <h3 class="panel-title">Uwagi dotyczące wgrywanych plików</h3>
                         </div>
                         <div class="panel-body">
                             <ul>
                                 <li>Maksymalny rozmiar pliku wynosi <strong>5 MB</strong></li>
                                 <li>Dopuszczalne formaty lików: <strong>JPG, GIF, PNG</strong> </li>
-                                <li>Dopuszczalne jest wrzucenie pliku poprzez przeciągnięcie.</li>
+                                <!--<li>Dopuszczalne jest wrzucenie pliku poprzez przeciągnięcie.</li>-->
                             </ul>
                         </div>
                     </div>

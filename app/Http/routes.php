@@ -16,10 +16,12 @@ Route::get('home', 'HomeController@index');
 //Route::get('pytania-abc', 'QuestionController@abc');
 //Route::get('pytania-tak-nie', 'QuestionController@yesno');
 
-Route::get('/pojedynczePytanie', 'QuestionController@showQuestions');
-Route::get('/dodajPytanie', 'QuestionController@addQuestion');
-Route::get('/dodajPytanieMulti', 'QuestionController@multi');
-Route::get('/dodajPytanieTakNie', 'QuestionController@yesno');
+Route::get('/pojedyncze-pytanie', 'QuestionController@showQuestions');
+Route::get('/dodaj-pytanie', 'QuestionController@addQuestion');
+Route::get('/dodaj-pytanie-tak-nie', 'QuestionController@yesno');
+
+Route::get('/dodaj-pytanie-multi', 'QuestionController@multi');
+Route::post('/dodaj-pytanie-multi', 'QuestionController@uploadFile'); // upload
 
 Route::get('admin/logowanie', 'Admin\AuthController@getLogin');
 Route::post('admin/logowanie', 'Admin\AuthController@postLogin');
