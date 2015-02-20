@@ -3,7 +3,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Authenticate {
+class AuthenticateByLogin {
 
 	/**
 	 * The Guard implementation.
@@ -32,19 +32,10 @@ class Authenticate {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if ($this->auth->guest())
-		{
-			if ($request->ajax())
-			{
-				return response('Unauthorized.', 401);
-			}
-			else
-			{
-				return redirect()->guest('admin/logowanie');
-			}
-		}
-
-		return $next($request);
+//        if ($this->auth->basic()) {
+//			$this->auth->basic('name');
+//		}
+        return $next($request);
 	}
 
 }
