@@ -22,7 +22,7 @@ class QuestionsAbc extends Model {
      *
      * @var array
      */
-    protected $fillable = ['question', 'answer_a', 'answer_b', 'answer_c', 'correct_answer', 'picture'];
+    protected $fillable = ['question', 'answer_a', 'answer_b', 'answer_c', 'correct_answer', 'picture', 'category'];
 
     /**
      * The attributes excluded from the model's JSON form.

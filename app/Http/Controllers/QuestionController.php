@@ -13,8 +13,6 @@ class QuestionController extends Controller {
     {
         $itemsPerPage = \Input::get('ilosc');
         $questions = \App\QuestionsAbc::All();
-
-        
         
         return view('singleQuestion', array(
             'questions' => $questions
@@ -30,8 +28,6 @@ class QuestionController extends Controller {
     
     public function multi()
     {
-        $upa = mkdate();
-        echo $upa;
         return view('addMultiQuestion');
     }
     
