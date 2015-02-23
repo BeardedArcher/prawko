@@ -6,7 +6,7 @@
     <div class="col-md-4 col-md-offset-4">
         <p class="bg-primary">Jaki rodzaj pytania chcesz dodać?</p>
         <div class="questions">
-        <a href="dodaj-pytanie-abc" class='form-multi'>
+        <a href="dodaj-pytanie-abc" class='btn btn-primary yesno'>
             Pytanie Jedno/Wielokrotnego wyboru
         </a>
         <a href="dodaj-pytanie-tak-nie" class="btn btn-primary yesno">
