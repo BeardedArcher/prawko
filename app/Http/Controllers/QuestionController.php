@@ -2,42 +2,64 @@
 use Illuminate\Support\Facades\Route;
 
 /**
- * Opis pliku
+ * Question controller
  *
  * @author: Janusz Smoła
  */
 
 class QuestionController extends Controller {
 
-    public function showQuestions()
+    /**
+     * Abc question list
+     */
+    public function abc()
     {
         $itemsPerPage = \Input::get('ilosc');
         $questions = \App\QuestionsAbc::All();
 
-        
-        
-        return view('singleQuestion', array(
+        return view('abc', array(
             'questions' => $questions
         ));
     }
 
+    /**
+     * Yesno question list
+     */
     public function yesno()
     {
         $itemsPerPage = \Input::get('ilosc');
-        
+    }
+
+    /**
+     * Add question select type
+     */
+    public function addQuestionSelectType()
+    {
+        return view('addQuestionSelectType');
+    }
+
+    /**
+     * Yesno question add
+     */
+    public function addYesno()
+    {
         return view('addYesNoQuestion');
     }
     
-    public function multi()
+    /**
+     * Abc question add
+     */
+    public function addAbc()
     {
-        $upa = mkdate();
-        echo $upa;
-        return view('addMultiQuestion');
+        return view('addAbcQuestion');
     }
-    
-    public function addQuestion()
+
+    /**
+     * Display question with details
+     */
+    public function questionDetails()
     {
-        return view('addQuestionPanel');
+        return view('questionDetails');
     }
     
     public function uploadFile()
@@ -47,7 +69,7 @@ class QuestionController extends Controller {
         var_dump($target);
         $target_final = $target . basename($_FILES['uploadedfile']['name']);
         
-        if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_final)){
+        if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_final)) {
             echo 'wrzucono';
         } else {
             echo 'cos nie dziala';
