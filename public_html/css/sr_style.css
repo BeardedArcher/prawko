@@ -101,3 +101,7 @@ input.form-login:focus {
 .zaloguj {
     padding-left: 145px;
 }
+
+.radio label {
+    margin-left: 20px;
+}

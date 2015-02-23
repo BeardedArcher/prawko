@@ -36,6 +36,39 @@
                         </div>
                     </div>
                       
+<!-- KATEGORIA -------------------------------------------------------------------------------------->
+                   
+                    <div class='form-group'>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title main-1"><strong>Wybierz kategorię (opcjonalnie)</strong></h3>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="a" id="a" value="a">
+                                    Kategoria A
+                                </label>
+                                <label>
+                                    <input type="radio" name="b" id="b" value="b">
+                                    Kategoria B
+                                </label>
+                                <label>
+                                    <input type="radio" name="c" id="c" value="c">
+                                    Kategoria C
+                                </label>
+                                <label>
+                                    <input type="radio" name="d" id="d" value="d">
+                                    Kategoria D
+                                </label>
+                                <label>
+                                    <input type="radio" name="o" id="o" value="o" checked>
+                                    Ogólne
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
 <!-- PYTANIE -------------------------------------------------------------------------------------->
                     
                     <div class='form-group'>
@@ -46,10 +79,6 @@
                         <textarea class='form-control' rows='5' id='text' placeholder="Wprowadź treść pytania"></textarea>
                         </div>
                     </div>
-                    
-                    <!-- endof DODANIE OBAZU -->
-
-                    
 
 <!-- ODPOWIEDZI  -------------------------------------------------------------------->
                     <div class='form-group'>
