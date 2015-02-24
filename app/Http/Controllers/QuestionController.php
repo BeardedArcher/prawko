@@ -16,8 +16,6 @@ class QuestionController extends Controller {
     {
         $itemsPerPage = \Input::get('ilosc');
         $questions = \App\QuestionsAbc::All();
-        
-        return view('singleQuestion', array(
 
         return view('abc', array(
             'questions' => $questions
@@ -41,7 +39,7 @@ class QuestionController extends Controller {
     }
 
     /**
-     * Yesno question add
+     * Add question type Yes/No
      */
     public function addYesno()
     {
@@ -49,11 +47,11 @@ class QuestionController extends Controller {
     }
     
     /**
-     * Abc question add
+     * Abc question show form
      */
     public function addAbc()
     {
-        return view('addMultiQuestion');
+        return view('addAbcQuestion');
     }
 
     /**
@@ -64,12 +62,17 @@ class QuestionController extends Controller {
         return view('questionDetails');
     }
     
-    public function uploadFile()
+    /**
+     * Add ABC question with image
+     */
+    public function uploadQuestion()
     {
-        var_dump(__DIR__);
+//        var_dump($_POST);
+        $randomCode = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1,8);
+
         $target = __DIR__ . '/../../../public_html/images/';
-        var_dump($target);
         $target_final = $target . basename($_FILES['uploadedfile']['name']);
+        $_FILES['uploadedfile']['name'] = $randomCode;
         
         if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_final)) {
             echo 'wrzucono';
@@ -77,7 +80,7 @@ class QuestionController extends Controller {
             echo 'cos nie dziala';
         }
         
-        return view('addMultiQuestion');
+        return view('addAbcQuestion');
     }
 
     

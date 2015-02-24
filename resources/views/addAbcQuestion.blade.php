@@ -20,8 +20,8 @@
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                     <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                     Wybierz plik <input name="uploadedfile" type="file">
-                    <input type="submit" value="Dodaj">
-                </form>
+                    <!--<input type="submit" value="Dodaj">-->
+                
                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -45,23 +45,23 @@
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="a" id="a" value="a">
+                                    <input type="radio" id="a" value="a" name="category">
                                     Kategoria A
                                 </label>
                                 <label>
-                                    <input type="radio" name="b" id="b" value="b">
+                                    <input type="radio" id="b" value="b" name="category">
                                     Kategoria B
                                 </label>
                                 <label>
-                                    <input type="radio" name="c" id="c" value="c">
+                                    <input type="radio" id="c" value="c" name="category">
                                     Kategoria C
                                 </label>
                                 <label>
-                                    <input type="radio" name="d" id="d" value="d">
+                                    <input type="radio" id="d" value="d" name="category">
                                     Kategoria D
                                 </label>
                                 <label>
-                                    <input type="radio" name="o" id="o" value="o" checked>
+                                    <input type="radio" id="o" value="o" name="category" checked>
                                     Ogólne
                                 </label>
                             </div>
@@ -76,7 +76,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title main-1"><strong><p>Wprowadź treść pytania.</strong><p> Jeśli nie posiadasz grafiki możesz pod pytaniem opisać sytuację, a my dorobimy grafikę.</h3>
                             </div>
-                        <textarea class='form-control' rows='5' id='text' placeholder="Wprowadź treść pytania"></textarea>
+                        <textarea class='form-control' rows='5' id='text' placeholder="Wprowadź treść pytania" name="contents"></textarea>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
                             </div>
                             
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Odpowiedź nr 1">
+                                <input type="text" class="form-control" placeholder="Odpowiedź nr 1" name="answer-1">
 
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default button-1" aria-expanded='false'>
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Odpowiedź nr 2">
+                                <input type="text" class="form-control" placeholder="Odpowiedź nr 2" name="answer-2">
 
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default button-2" aria-expanded='false'>
@@ -108,7 +108,7 @@
                             </div>
                             
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Odpowiedź nr 3">
+                                <input type="text" class="form-control" placeholder="Odpowiedź nr 3"  name="answer-3">
 
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default button-3" aria-expanded='false'>
@@ -118,10 +118,12 @@
                             </div>
                         </div>
                     </div>
+                
 
                     <div class='form-group float-right'>
                         <input class='btn btn-info' type='submit' value='Dalej' id="next1">
                     </div>
+                </form>
                     <div class='input-group hidden'>
                         <div class="panel panel-default">
                             <div class="panel-heading">

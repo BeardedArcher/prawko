@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
-                <div class="panel-heading question-panel">Jak należy zachować się w tej sytuacji?</div>
+                <div class="panel-heading question-panel">cos tam</div>
                 <div class="list-group">
                     <!-- w miejsce 12 nalezy wstawic odpowiednie id. W miejsce data-correct nalezy wstawic poprawna odpowiedz -->
                     <a href="#" class="list-group-item q12" data-id='1' data-correct='true'>Stać</a>

@@ -22,7 +22,7 @@ Route::get('pytanie', 'QuestionController@questionDetails');
 Route::get('dodaj-pytanie', 'QuestionController@addQuestionSelectType');
 Route::get('dodaj-pytanie-tak-nie', 'QuestionController@addYesno');
 Route::get('dodaj-pytanie-abc', 'QuestionController@addAbc');
-Route::post('dodaj-pytanie-abc', 'QuestionController@uploadFile'); // upload
+Route::post('dodaj-pytanie-abc', 'QuestionController@uploadQuestion'); // upload
 
 Route::get('admin/', 'Admin\AdminController@index');
 Route::get('admin/logowanie', 'Admin\AuthController@getLogin');
