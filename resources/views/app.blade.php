@@ -25,13 +25,7 @@
         
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+    
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -48,25 +42,13 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="http://gra.pandzia.pl/admin/logowanie">Logowanie</a></li>
-                                        <li><a href="http://gra.pandzia.pl/pojedyncze-pytanie">Odpowiedz na pytanie</a></li>
-                                        <li><a href="http://gra.pandzia.pl/dodaj-pytanie">Dodaj pytanie</a></li>
-                                        <li><a href="http://gra.pandzia.pl/dodaj-pytanie-multi">Dodaj pytanie multi</a></li>
-                                        <li><a href="http://gra.pandzia.pl/dodaj-pytanie-tak-nie">Dodaj pytanie tak/nie</a></li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
-						<li><a href="/auth/login">Login</a></li>
-						<li><a href="/auth/register">Register</a></li>
-					@else
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="/auth/logout">Logout</a></li>
-							</ul>
-						</li>
-					@endif
+					<li><a href="/admin/logowanie">Logowanie</a></li>
+                    <li><a href="pytanie">Odpowiedz na pytanie</a></li>
+                    <li><a href="pytania-abc">Lista pytań abc</a></li>
+                    <li><a href="pytania-tak-nie">Lista pytań tak/nie</a></li>
+                    <li><a href="dodaj-pytanie">Dodaj pytanie</a></li>
+                    <li><a href="dodaj-pytanie-abc">Dodaj pytanie abc</a></li>
+                    <li><a href="dodaj-pytanie-tak-nie">Dodaj pytanie tak/nie</a></li>
 				</ul>
 			</div>
 		</div>

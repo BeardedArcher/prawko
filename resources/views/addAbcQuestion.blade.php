@@ -16,7 +16,7 @@
                     </span>
                 </div>
 
-                <form enctype="multipart/form-data" action="dodaj-pytanie-multi" method="POST">
+                <form enctype="multipart/form-data" action="dodaj-pytanie-abc" method="POST">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                     <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                     Wybierz plik <input name="uploadedfile" type="file">
