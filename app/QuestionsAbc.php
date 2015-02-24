@@ -30,7 +30,5 @@ class QuestionsAbc extends Model {
      * @var array
      */
     protected $hidden = ['id', 'accepted'];
-    
-    
-
+   
 }

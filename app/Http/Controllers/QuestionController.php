@@ -70,6 +70,9 @@ class QuestionController extends Controller {
 //        var_dump($_POST);
         $randomCode = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1,8);
 
+        $count = \App\QuestionsAbc::where('picture', '=', $randomCode)->count();
+        var_dump($count);
+        
         $target = __DIR__ . '/../../../public_html/images/';
         $target_final = $target . basename($_FILES['uploadedfile']['name']);
         $_FILES['uploadedfile']['name'] = $randomCode;
