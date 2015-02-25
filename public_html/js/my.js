@@ -1,6 +1,11 @@
 $(function()
 {
-    /* PYTANIA MULTI */
+    /* PYTANIA MULTI  
+     * 
+     * zaznaczanie kliknietego przycisku na zielono i pozostałych na czerwono
+     * + zmiana ikonki + pokazanie komunikatu
+     * 
+     * */
     
     var a=0;
     
@@ -12,8 +17,9 @@ $(function()
         $('#a-2').attr('class', 'glyphicon glyphicon-remove');
         $('#a-3').attr('class', 'glyphicon glyphicon-remove');
         
-        $('.visible').addClass('hidden').removeClass('visible');
+        $('.error-1').addClass('hidden');
 
+        $('.correct_answer').val(1);
         return a=1;
     });
     
@@ -25,7 +31,9 @@ $(function()
         $('#a-2').attr('class', 'glyphicon glyphicon-ok');
         $('#a-3').attr('class', 'glyphicon glyphicon-remove');
         
-        $('.visible').addClass('hidden').removeClass('visible');
+        $('.error-1').addClass('hidden');
+
+        $('.correct_answer').val(2);
 
         return a=2;
     });
@@ -38,20 +46,49 @@ $(function()
         $('#a-2').attr('class', 'glyphicon glyphicon-remove');
         $('#a-3').attr('class', 'glyphicon glyphicon-ok');      
         
-        $('.visible').addClass('hidden').removeClass('visible');
+        $('.error-1').addClass('hidden');
+        
+        $('.correct_answer').val(3);
 
         return a=3;
     });
     
+    /* PYTANIA MULTI  
+     * sprawdza czy wypelnione zostaly pola odpoweidzi
+     * i jesli nie wyrzuca blad
+     * 
+     * */
+    
     $('#next1').on('click', function(){
 
-        if(a===0) { $('.hidden').addClass('visible').removeClass('hidden');
+       var a1, a2, a3;
+       a1 = $('input[name=answer-1]').val();
+       a2 = $('input[name=answer-2]').val();
+       a3 = $('input[name=answer-3]').val();
+
+       if(!a1 || !a2 || !a3) { 
+           $('.error-2').removeClass('hidden');
+            return false; 
+        }
+        $('.error-2').addClass('hidden');
+       
+    });
+    
+    /*
+     * Sprawdzanie czy została zaznaczona chociaż jedna odpowiedź
+     * jeśli nie to wyświetla komunikat
+     * 
+     */
+    
+    $('#next1').on('click', function(){
+
+        if(a===0) { $('.error-1').removeClass('hidden');
             $('.button-1').attr('class', 'btn btn-danger button-1');
             $('.button-2').attr('class', 'btn btn-danger button-2');
             $('.button-3').attr('class', 'btn btn-danger button-3');
             return false; } 
         else {
-            $('.visible').addClass('hidden').removeClass('visible');
+            $('.error-1').addClass('hidden');
         return a;
     }
     });

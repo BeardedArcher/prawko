@@ -6,42 +6,14 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 
-<!-- DODANIE OBAZU -------------------------------------------------------------------->
+            <form enctype="multipart/form-data" action="dodaj-pytanie-abc" method="POST">
 
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                <div class='form-group'>
-                    <span class="btn btn-info fileinput-button add-pic">
-                        <i class="glyphicon glyphicon-picture"></i>
-                        <span>Dodaj grafikę dotycząca pytania (opcjonalnie) </span>
-                    </span>
-                </div>
-
-                <form enctype="multipart/form-data" action="dodaj-pytanie-abc" method="POST">
-                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                    <input type="hidden" name="MAX_FILE_SIZE" value="500000">
-                    Wybierz plik <input name="uploadedfile" type="file">
-                    <!--<input type="submit" value="Dodaj">-->
-                
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                            <h3 class="panel-title">Uwagi dotyczące wgrywanych plików</h3>
-                        </div>
-                        <div class="panel-body">
-                            <ul>
-                                <li>Maksymalny rozmiar pliku wynosi <strong>5 MB</strong></li>
-                                <li>Dopuszczalne formaty lików: <strong>JPG, GIF, PNG</strong> </li>
-                                <!--<li>Dopuszczalne jest wrzucenie pliku poprzez przeciągnięcie.</li>-->
-                            </ul>
-                        </div>
-                    </div>
-                      
 <!-- KATEGORIA -------------------------------------------------------------------------------------->
                    
                     <div class='form-group'>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title main-1"><strong>Wybierz kategorię (opcjonalnie)</strong></h3>
+                                <h3 class="panel-title main-1"><strong>Wybierz kategorię</strong> (opcjonalnie)</h3>
                             </div>
                             <div class="radio">
                                 <label>
@@ -76,7 +48,26 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title main-1"><strong><p>Wprowadź treść pytania.</strong><p> Jeśli nie posiadasz grafiki możesz pod pytaniem opisać sytuację, a my dorobimy grafikę.</h3>
                             </div>
-                        <textarea class='form-control' rows='5' id='text' placeholder="Wprowadź treść pytania" name="contents"></textarea>
+                        <textarea class='form-control' rows='5' id='text' placeholder="Wprowadź treść pytania" name="question"></textarea>
+                        </div>
+                    </div>
+
+<!-- DODANIE OBAZU -------------------------------------------------------------------->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Dodaj obraz dotyczący sytuacji</strong> (opcjonalnie)</h3>
+                        </div>
+                        <div class="panel-body">
+                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                            <input type="hidden" name="MAX_FILE_SIZE" value="500000">
+                            <input class="btn btn-primary btn-file" name="uploadedfile" type="file" value="Wybierz grafikę">
+                            <br>
+                            <ul>
+                                <li>Maksymalny rozmiar pliku wynosi <strong>5 MB</strong></li>
+                                <li>Dopuszczalne formaty lików: <strong>JPG, GIF, PNG</strong> </li>
+                                <!--<li>Dopuszczalne jest wrzucenie pliku poprzez przeciągnięcie.</li>-->
+                            </ul>
                         </div>
                     </div>
 
@@ -122,15 +113,24 @@
 
                     <div class='form-group float-right'>
                         <input class='btn btn-info' type='submit' value='Dalej' id="next1">
+                        <input class="correct_answer" type="hidden" name="correct_answer">
                     </div>
                 </form>
-                    <div class='input-group hidden'>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title h-1"><strong>Musisz zaznaczyć jedną poprawną odpowiedź!</strong></h3>
-                            </div>
+                <div class='input-group error-2 hidden'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title h-1"><strong>Musisz wypełnić wszystkie odpowiedzi!</strong></h3>
                         </div>
                     </div>
+                </div>
+                <div class='input-group error-1 hidden'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title h-1"><strong>Musisz zaznaczyć jedną poprawną odpowiedź!</strong></h3>
+                        </div>
+                    </div>
+                </div>
+                
 
 <!-- end of ODPOWIEDZI -->
                     
