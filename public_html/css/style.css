@@ -56,11 +56,6 @@
     float: right;
 }
 
-.h-1 {
-    font-size: 14px;
-    color: red;
-}
-
 .add-foto {
     display: none;
 }
@@ -278,4 +273,8 @@ html, body {
     background: green;
     cursor: inherit;
     display: block;
+}
+
+.radio label {
+    margin-left: 20px;
 }

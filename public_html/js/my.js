@@ -95,18 +95,23 @@ $(function()
     
     
     /* PYTANIA YES-NO*/
+    
     var i=0;
     var u=0;
     
     $('#yn-1').on('click', function(){
         i++;
         $(this).parent().parent().find('button').toggleClass('btn-success');
+        $('.correct_answer').val(1);
     });
     
     $('#yn-2').on('click', function(){
         u++;
         $(this).parent().parent().find('button').toggleClass('btn-danger');
+        $('.correct_answer').val(0)
     });
+    
+    
     
     $('#next').on('click', function(){
        var x = i+u;

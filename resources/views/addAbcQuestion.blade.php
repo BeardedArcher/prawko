@@ -46,7 +46,7 @@
                     <div class='form-group'>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title main-1"><strong><p>Wprowadź treść pytania.</strong><p> Jeśli nie posiadasz grafiki możesz pod pytaniem opisać sytuację, a my dorobimy grafikę.</h3>
+                                <h3 class="panel-title main-1"><strong><p>Wprowadź treść pytania.</strong><p> Jeśli nie posiadasz grafiki możesz pod pytaniem opisać sytuację, a my dodamy grafikę.</h3>
                             </div>
                         <textarea class='form-control' rows='5' id='text' placeholder="Wprowadź treść pytania" name="question"></textarea>
                         </div>
@@ -111,24 +111,16 @@
                     </div>
                 
 
-                    <div class='form-group float-right'>
-                        <input class='btn btn-info' type='submit' value='Dalej' id="next1">
-                        <input class="correct_answer" type="hidden" name="correct_answer">
-                    </div>
+                <div class='form-group float-right'>
+                    <input class='btn btn-info' type='submit' value='Dalej' id="next1">
+                    <input class="correct_answer" type="hidden" name="correct_answer">
+                </div>
                 </form>
                 <div class='input-group error-2 hidden'>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title h-1"><strong>Musisz wypełnić wszystkie odpowiedzi!</strong></h3>
-                        </div>
-                    </div>
+                    <div class="alert alert-danger"><strong>Musisz wypełnić wszystkie odpowiedzi!</strong></div>
                 </div>
                 <div class='input-group error-1 hidden'>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title h-1"><strong>Musisz zaznaczyć jedną poprawną odpowiedź!</strong></h3>
-                        </div>
-                    </div>
+                    <div class="alert alert-danger"><strong>Musisz zaznaczyć jedną poprawną odpowiedź!</strong></div>
                 </div>
                 
 
