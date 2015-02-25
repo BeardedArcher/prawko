@@ -19,7 +19,6 @@ Route::get('pytania-tak-nie', 'QuestionController@yesno');
 
 Route::get('pytanie', 'QuestionController@questionDetails');
 
-Route::get('dodaj-pytanie', 'QuestionController@addQuestionSelectType');
 Route::get('dodaj-pytanie-tak-nie', 'QuestionController@addYesno');
 Route::post('dodaj-pytanie-tak-nie', 'QuestionController@uploadYesNo'); // upload yn
 Route::get('dodaj-pytanie-abc', 'QuestionController@addAbc');

@@ -31,14 +31,6 @@ class QuestionController extends Controller {
     }
 
     /**
-     * Add question select type
-     */
-    public function addQuestionSelectType()
-    {
-        return view('addQuestionSelectType');
-    }
-
-    /**
      * Add question type Yes/No
      */
     public function addYesno()
