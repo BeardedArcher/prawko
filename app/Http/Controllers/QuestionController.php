@@ -1,5 +1,9 @@
 <?php namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Route;
+use \Request;
+use \Input;
+use \Validator;
+use \App\QuestionsAbc;
+use \App\QuestionsYesNo;
 
 /**
  * Question controller
@@ -14,8 +18,8 @@ class QuestionController extends Controller {
      */
     public function abc()
     {
-        $itemsPerPage = \Input::get('ilosc');
-        $questions = \App\QuestionsAbc::All();
+        $itemsPerPage = Input::get('ilosc');
+        $questions = QuestionsAbc::All();
 
         return view('abc', array(
             'questions' => $questions
@@ -27,15 +31,7 @@ class QuestionController extends Controller {
      */
     public function yesno()
     {
-        $itemsPerPage = \Input::get('ilosc');
-    }
-
-    /**
-     * Add question type Yes/No
-     */
-    public function addYesno()
-    {
-        return view('addYesNoQuestion');
+        $itemsPerPage = Input::get('ilosc');
     }
     
     /**
@@ -57,62 +53,48 @@ class QuestionController extends Controller {
     /*
      * Add Yes/No question with or without image
      */
-    
-    public function uploadYesNo()
+    public function addYesNo()
     {
-        $question = $_POST['question'];
-        $correct_answer = $_POST['correct_answer'];
-        $category = $_POST['category'];
-        $accepted = '0';
-        
-        $query = new \App\QuestionsYesNo();
-        
-        if($_FILES['uploadedfile']['size'] > 0)
-        {
-            $extension = substr($_FILES['uploadedfile']['name'], strrpos($_FILES['uploadedfile']['name'], '.') +1);
+        if(Request::isMethod('post')) {
 
-            do {
-                $randomCode = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1,8);
-                $count = \App\QuestionsYesNo::where('picture', '=', $randomCode)->count();
-            }
-            while($count > 1);
-            
-            $final_name = $randomCode . '.' . $extension;
-            
-            
-            $target = __DIR__ . '/../../../public_html/images/';
-            $target_final = $target . basename($final_name);
+            $attributes = [
+                'picture' => Request::file('picture'),
+                'question' => Input::get('question'),
+                'accepted' => false,
+                'correct_answer' => Input::get('correct_answer'),
+                'category' => Input::get('category')
+            ];
 
-            if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_final)) {
-                
-                $query->question = $question;
-                $query->accepted = $accepted;
-                $query->correct_answer = $correct_answer;
-                $query->picture = $final_name;
-                $query->category = $category;
-            
-                if($query->save()) {
-    //                echo json_encode();
-                } else {
-    //                echo json_encode();
+            $validator = Validator::make($attributes, QuestionsYesNo::getValidationAddRules());
+
+            if(Request::hasFile('picture'))
+            {
+                $extension = Request::file('picture')->getClientOriginalExtension();
+
+                $picture = null;
+
+                while(!$picture) {
+                    $random_name = str_rand(12) . $extension;
+                    if(QuestionsYesNo::where('picture', '=', $random_name)->first()) {
+                        $picture = $random_name;
+                    }
                 }
+
+                $attributes['picture'] = $picture;
+
+                var_dump(QuestionsYesNo::getImagePath()); die();
+                Request::file('picture')->move(QuestionsYesNo::getImagePath(), $picture);
+            }
+
+            $questionRow = new QuestionsYesNo();
+
+            if($questionRow->save()) {
+
+            } else {
+
             }
         }
-        else {
-            
-            $query->question = $question;
-            $query->accepted = $accepted;
-            $query->correct_answer = $correct_answer;
-            $query->picture = '';
-            $query->category = $category;
-            if($query->save()) {
-//                echo json_encode();
-            }
-            else {
-//                echo json_encode();
-            }
-        }
-        
+
         return view('addYesNoQuestion');
     }
     
