@@ -2,6 +2,7 @@
 use \Request;
 use \Input;
 use \Validator;
+use \Cache;
 use \App\QuestionsAbc;
 use \App\QuestionsYesNo;
 
@@ -47,6 +48,21 @@ class QuestionController extends Controller {
      */
     public function questionDetails()
     {
+        if (!Cache::has('questionsYesNoCount')) {
+            Cache::add('questionsYesNoCount', QuestionsYesNo::count(), 5);
+        }
+        if (!Cache::has('questionsAbcCount')) {
+            Cache::add('questionsAbcCount', QuestionsAbc::count(), 5);
+        }
+
+        $yesnoCount = Cache::get('questionsYesNoCount');
+        $abcCount = Cache::get('questionsAbcCount');
+        if(rand(0, $yesnoCount + $abcCount) < $yesnoCount) {
+            $question = QuestionsYesNo::orderByRaw("RAND()")->first();
+        } else {
+            $question = QuestionsAbc::orderByRaw("RAND()")->first();
+        }
+
         return view('questionDetails');
     }
     
