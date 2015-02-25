@@ -57,42 +57,51 @@ class QuestionController extends Controller {
     {
         if(Request::isMethod('post')) {
 
-            $attributes = [
-                'picture' => Request::file('picture'),
+            $data = [
+                'picture' => Request::file('uploaded_picture'),
                 'question' => Input::get('question'),
                 'accepted' => false,
                 'correct_answer' => Input::get('correct_answer'),
                 'category' => Input::get('category')
             ];
 
-            $validator = Validator::make($attributes, QuestionsYesNo::getValidationAddRules());
+            $validator = Validator::make($data, QuestionsYesNo::getValidationAddRules());
+            $errorMessages = $validator->messages();
 
-            if(Request::hasFile('picture'))
+            if(Request::hasFile('uploaded_picture') && $validator->passes())
             {
-                $extension = Request::file('picture')->getClientOriginalExtension();
+                $extension = Request::file('uploaded_picture')->getClientOriginalExtension();
 
                 $picture = null;
 
                 while(!$picture) {
-                    $random_name = str_rand(12) . $extension;
-                    if(QuestionsYesNo::where('picture', '=', $random_name)->first()) {
+                    $random_name = str_random(12) . $extension;
+                    if(!QuestionsYesNo::where('picture', '=', $random_name)->first()) {
                         $picture = $random_name;
                     }
                 }
 
-                $attributes['picture'] = $picture;
+                $data['picture'] = $picture;
 
-                var_dump(QuestionsYesNo::getImagePath()); die();
-                Request::file('picture')->move(QuestionsYesNo::getImagePath(), $picture);
-            }
-
-            $questionRow = new QuestionsYesNo();
-
-            if($questionRow->save()) {
-
-            } else {
+                try {
+                    Request::file('uploaded_picture')->move(QuestionsYesNo::getImagePath(), $picture);
+                } catch (Exception $e) {
+                    $errorMessages->add('picture', 'An error message.');
+                }
 
             }
+
+            if($errorMessages->isEmpty()) {
+                $questionRow = new QuestionsYesNo();
+
+                if(!$questionRow->fill($data)->save()) {
+                    $errorMessages->add('form', 'An error message.');
+                }
+            }
+
+            return view('addYesNoQuestion', [
+                'messages' => $errorMessages
+            ]);
         }
 
         return view('addYesNoQuestion');

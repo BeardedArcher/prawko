@@ -18,7 +18,11 @@
 		],
 		"psr-4": {
 			"App\\": "app/"
-		}
+		},
+        "files": [
+            "vendor/laravel/framework/src/Illuminate/Foundation/helpers.php",
+            "vendor/laravel/framework/src/Illuminate/Support/helpers.php"
+        ]
 	},
 	"autoload-dev": {
 		"classmap": [
