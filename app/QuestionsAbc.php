@@ -30,5 +30,18 @@ class QuestionsAbc extends Model {
      * @var array
      */
     protected $hidden = ['id', 'accepted'];
+
+    public static function getValidationAddRules()
+    {
+        return [
+            'picture' => 'sometimes|required|image|max:5120',
+            'question' => 'required',
+            'answer_a' => 'required',
+            'answer_b' => 'required',
+            'answer_c' => 'required',
+            'correct_answer' => 'required|digits_between:1,3',
+            'category' => 'required'
+        ];
+    }
    
 }
