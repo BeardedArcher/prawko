@@ -1,4 +1,5 @@
 <?php namespace App\Http\Controllers;
+use Carbon\Carbon;
 use \Request;
 use \Input;
 use \Validator;
@@ -57,13 +58,16 @@ class QuestionController extends Controller {
 
         $yesnoCount = Cache::get('questionsYesNoCount');
         $abcCount = Cache::get('questionsAbcCount');
+        $rand = rand(0, $yesnoCount + $abcCount);
         if(rand(0, $yesnoCount + $abcCount) < $yesnoCount) {
             $question = QuestionsYesNo::orderByRaw("RAND()")->first();
         } else {
             $question = QuestionsAbc::orderByRaw("RAND()")->first();
         }
 
-        return view('questionDetails');
+        return view('questionDetails', [
+            'question' => $question
+        ]);
     }
     
     /*
@@ -74,12 +78,15 @@ class QuestionController extends Controller {
         if(Request::isMethod('post')) {
 
             $data = [
-                'picture' => Request::file('uploaded_picture'),
                 'question' => Input::get('question'),
                 'accepted' => false,
                 'correct_answer' => Input::get('correct_answer'),
                 'category' => Input::get('category')
             ];
+
+            if(Request::file('uploaded_picture')) {
+                $data['picture'] = Request::file('uploaded_picture');
+            }
 
             $validator = Validator::make($data, QuestionsYesNo::getValidationAddRules());
             $errorMessages = $validator->messages();
