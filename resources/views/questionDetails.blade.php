@@ -1,5 +1,5 @@
 <div class='sq'>
-    <div class='picture'><img src='/images/pyt1.jpg'></div>
+    <div class='picture'><img src='/images/square.jpg'></div>
     <div class="panel panel-default">
         <div class="panel-heading question-panel">tresc Questuion</div>
         <div class="list-group">
