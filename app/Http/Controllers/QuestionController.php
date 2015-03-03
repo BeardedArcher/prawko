@@ -139,7 +139,6 @@ class QuestionController extends Controller {
         if(Request::isMethod('post')) {
             
             $data = [
-                'picture' => Request::file('uploaded_picture'),
                 'question' => Input::get('question'),
                 'answer_a' => Input::get('answer-1'),
                 'answer_b' => Input::get('answer-2'),
@@ -148,6 +147,10 @@ class QuestionController extends Controller {
                 'accepted' => false,
                 'category' => Input::get('category')
             ];
+
+            if(Request::file('uploaded_picture')) {
+                $data['picture'] = Request::file('uploaded_picture');
+            }
 
             $validator = Validator::make($data, QuestionsAbc::getValidationAddRules());
             $errorMessages = $validator->messages();
