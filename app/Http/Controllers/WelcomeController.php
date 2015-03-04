@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Request;
 
 class WelcomeController extends Controller {
 
@@ -22,7 +23,7 @@ class WelcomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('guest');
+            $this->middleware('guest');
 	}
 
 	/**
@@ -32,7 +33,19 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-    	return view('welcome');
+            
+            $url = url();
+//            $path = path();
+            echo $url;
+            
+//            if(is('pytanie/*'))
+//            {
+//                echo 'da';
+//            }
+            
+            return view('app', array(
+//                'page' => $page,
+            ));
 	}
 
 }

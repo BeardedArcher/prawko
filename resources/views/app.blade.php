@@ -26,8 +26,10 @@
     
 </head>
 <body>
-	
-
-	@yield('content')
+    <div class='container-fluid'>
+	@include('navbar')
+        @include('welcome')
+        @include('footer')
+    </div>
 </body>
 </html>

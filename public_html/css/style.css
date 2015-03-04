@@ -284,17 +284,11 @@ html, body {
 }
 
 .c1 {
-    background-color: black;
+    background-color: #e7e7e7;
 }
 
 .c2 {
     background-color: white;
-}
-
-.sq {
-    width: 600px;
-    margin: 0 auto;
-    margin-top: 100px;
 }
 
 .picture {
@@ -309,4 +303,98 @@ html, body {
 
 .navbar .navbar-collapse {
     text-align: center;
+}
+
+.squares-bgd {
+    /*margin-top: 100px; czemu to działa jako style w div a nie tutaj? */
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+.opt {
+    color: white;
+    display: inline-block;
+    margin: 12px;
+    width: 220px;
+    line-height: 220px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.opt:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.opt-1 {
+    background-color: #337ab7;
+}
+
+.opt-1:hover {
+    background-color: #5898D0;
+}
+
+.opt-2 {
+    background-color: #D2772A;
+}
+
+.opt-2:hover {
+    background-color: #DE9759;
+}
+
+.opt-3 {
+    background-color:  #2b542c;
+}
+
+.opt-3:hover {
+    background-color:  #407D41;
+}
+
+.opt-4 {
+    background-color: #7a43b6;
+}
+
+.opt-4:hover {
+    background-color: #9A6EC9;
+}
+
+.navbar-nav {
+    color: white;
+    font-size: 18px;
+}
+
+.men {
+    background-color: #EBEBEB;
+    margin-right: 2px;
+}
+
+.points {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    vertical-align: middle;
+    text-align: center;
+    top: 2px;
+    left: 700px;
+    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%) !important;
+    font-family: Verdana,Geneva,sans-serif;
+    border-radius: 50%;
+    color: #fff;
+    border: 1px solid #265a88;
+    font-size: 30px;
+}
+
+.points-1.points-separator.points-2 {
+    padding: 2px;
+}
+
+.footer {
+    line-height: 100px;
+}
+
+body {
+    line-height: 0.7 !important;
 }
