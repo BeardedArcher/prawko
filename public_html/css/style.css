@@ -296,14 +296,7 @@ html, body {
     text-align: center;
 }
 
-.navbar .navbar-nav {
-    display: inline-block;
-    float: none;
-}
 
-.navbar .navbar-collapse {
-    text-align: center;
-}
 
 .squares-bgd {
     /*margin-top: 100px; czemu to działa jako style w div a nie tutaj? */
@@ -360,16 +353,6 @@ html, body {
     background-color: #9A6EC9;
 }
 
-.navbar-nav {
-    color: white;
-    font-size: 18px;
-}
-
-.men {
-    background-color: #EBEBEB;
-    margin-right: 2px;
-}
-
 .points {
     position: absolute;
     width: 150px;
@@ -398,3 +381,41 @@ html, body {
 body {
     line-height: 0.7 !important;
 }
+
+/* NAV BAR */
+
+.container-fluid {
+    padding: 0;
+    height: 70px;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+.navbar-nav {
+    color: white;
+    font-size: 18px;
+}
+
+.men, .navbar-brand {
+    margin-right: 2px;
+    margin-top: 10px;
+    border-right: 1px solid #EBEBEB;
+}
+
+.navbar-header {
+    /*padding-left: 500px;*/
+}
+
+.men-main {
+    color: red;
+    font-weight: bold;
+}
+
+/* END NAV BAR */

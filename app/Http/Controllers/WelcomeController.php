@@ -36,7 +36,7 @@ class WelcomeController extends Controller {
             
             $url = url();
 //            $path = path();
-            echo $url;
+//            echo $url;
             
 //            if(is('pytanie/*'))
 //            {
