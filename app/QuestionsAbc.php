@@ -43,5 +43,10 @@ class QuestionsAbc extends Model {
             'category' => 'required'
         ];
     }
+
+    public static function getImagePath()
+    {
+        return public_path() . '/images/';
+    }
    
 }

@@ -33,19 +33,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-            
-            $url = url();
-//            $path = path();
-//            echo $url;
-            
-//            if(is('pytanie/*'))
-//            {
-//                echo 'da';
-//            }
-            
-            return view('app', array(
-//                'page' => $page,
-            ));
+		return view('home');
 	}
 
 }

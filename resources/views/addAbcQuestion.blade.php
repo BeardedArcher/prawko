@@ -61,7 +61,7 @@
                         <div class="panel-body">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <input type="hidden" name="MAX_FILE_SIZE" value="500000">
-                            <input class="btn btn-primary btn-file" name="uploadedfile" type="file" value="Wybierz grafikę">
+                            <input class="btn btn-primary btn-file" name="uploaded_picture" type="file" value="Wybierz grafikę">
                             <br>
                             <ul>
                                 <li>Maksymalny rozmiar pliku wynosi <strong>5 MB</strong></li>

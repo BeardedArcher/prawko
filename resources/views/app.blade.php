@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,7 @@
 </head>
 <body>
     <div class='container-fluid'>
-	@include('navbar')
+        @include('navbar')
         @include('welcome')
         @include('footer')
     </div>

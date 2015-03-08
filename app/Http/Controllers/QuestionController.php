@@ -1,11 +1,13 @@
 <?php namespace App\Http\Controllers;
 use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
 use \Request;
 use \Input;
 use \Validator;
 use \Cache;
 use \App\QuestionsAbc;
 use \App\QuestionsYesNo;
+use Intervention\Image\ImageManager;
 
 /**
  * Question controller
@@ -98,16 +100,16 @@ class QuestionController extends Controller {
                 $picture = null;
 
                 while(!$picture) {
-                    $random_name = str_random(12) . $extension;
-                    if(!QuestionsYesNo::where('picture', '=', $random_name)->first()) {
-                        $picture = $random_name;
+                    $randomName = str_random(10) . '.' . $extension;
+                    if(!QuestionsYesNo::where('picture', '=', $randomName)->first()) {
+                        $picture = $randomName;
                     }
                 }
 
                 $data['picture'] = $picture;
 
                 try {
-                    Request::file('uploaded_picture')->move(QuestionsYesNo::getImagePath(), $picture);
+                    \Image::make(Request::file('uploaded_picture'))->fit(300,200)->save(QuestionsAbc::getImagePath(), $picture);
                 } catch (Exception $e) {
                     $errorMessages->add('picture', 'An error message.');
                 }
@@ -161,16 +163,16 @@ class QuestionController extends Controller {
                 $picture = null;
 
                 while(!$picture) {
-                    $random_name = str_random(12) . $extension;
-                    if(!QuestionsAbc::where('picture', '=', $random_name)->first()) {
-                        $picture = $random_name;
+                    $randomName = str_random(10) . '.' . $extension;
+                    if(!QuestionsAbc::where('picture', '=', $randomName)->first()) {
+                        $picture = $randomName;
                     }
                 }
 
                 $data['picture'] = $picture;
 
                 try {
-                    Request::file('uploaded_picture')->move(QuestionsAbc::getImagePath(), $picture);
+                    \Image::make(Request::file('uploaded_picture'))->fit(300,200)->save(QuestionsAbc::getImagePath() . $picture);
                 } catch (Exception $e) {
                     $errorMessages->add('picture', 'An error message.');
                 }

@@ -2,7 +2,7 @@
     <div class='container-fluid'>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a class="navbar-brand men-main" href="http://www.gra.pandzia.pl/">Główna</a></li>
+                <li><a class="navbar-brand men-main" href="/">Główna</a></li>
                 <li><a href="pytanie" class='men'><span>Testuj wiedzę</span></a></li>
                 <li><a href="#" class='men'>Egzamin</a></li>
                 <li><a href="dodaj-pytanie-abc" class='men'>Dodaj pytanie abc</a></li>
