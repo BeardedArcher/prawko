@@ -12,14 +12,14 @@
                 @if ($question instanceof App\QuestionsAbc)
                     <div class="list-group">
                         <!-- w miejsce 12 nalezy wstawic odpowiednie id. W miejsce data-correct nalezy wstawic poprawna odpowiedz -->
-                        <a href="#" class="list-group-item q12" data-id='1' data-correct='{{ $question->correct_answer === 1 ? 'true' : 'false' }}'>{{ $question->answer_a }}</a>
-                        <a href="#" class="list-group-item q12" data-id='2' data-correct='{{ $question->correct_answer === 2 ? 'true' : 'false' }}'>{{ $question->answer_b }}</a>
-                        <a href="#" class="list-group-item q12" data-id='3' data-correct='{{ $question->correct_answer === 3 ? 'true' : 'false' }}'>{{ $question->answer_c }}</a>
+                        <a href="#" class="list-group-item q12" data-id='1' data-correct='{{ $question->correct_answer == 1 ? 'true' : 'false' }}'>{{ $question->answer_a }}</a>
+                        <a href="#" class="list-group-item q12" data-id='2' data-correct='{{ $question->correct_answer == 2 ? 'true' : 'false' }}'>{{ $question->answer_b }}</a>
+                        <a href="#" class="list-group-item q12" data-id='3' data-correct='{{ $question->correct_answer == 3 ? 'true' : 'false' }}'>{{ $question->answer_c }}</a>
                     </div>
                 @elseif ($question instanceof App\QuestionsYesNo)
                     <div class="list-group">
-                        <a href="#" class="list-group-item q12" data-id='1' data-correct='{{ $question->correct_answer === 1 ? 'true' : 'false' }}'>Tak</a>
-                        <a href="#" class="list-group-item q12" data-id='2' data-correct='{{ $question->correct_answer === 2 ? 'true' : 'false' }}'>Nie</a>
+                        <a href="#" class="list-group-item q12" data-id='1' data-correct='{{ $question->correct_answer == 1 ? 'true' : 'false' }}'>Tak</a>
+                        <a href="#" class="list-group-item q12" data-id='2' data-correct='{{ $question->correct_answer == 2 ? 'true' : 'false' }}'>Nie</a>
                     </div>
                 @endif
             </div>
