@@ -3,10 +3,10 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-8 margin-center col-md-offset-2">
 
-            <img src="images/{{ $question->picture }}">
-
+            <p><img src="images/{{ $question->picture }}"></p>
+            
             <div class="panel panel-default">
                 <div class="panel-heading question-panel">{{ $question->question }}</div>
                 @if ($question instanceof App\QuestionsAbc)
@@ -24,7 +24,7 @@
                 @endif
             </div>
 
-            <div class='points'><span class='points-1'>12</span><span class='points-separator'>/</span><span class='points-2'>100</span></div>
+            <!--<div class='points'><span class='points-1'>12</span><span class='points-separator'>/</span><span class='points-2'>100</span></div>-->
 
             <div class="panel-heading answer-true hidden">Poprawna odpowiedź!</div>
             <div class="panel-heading answer-false hidden">Niepoprawna odpowiedź!</div>

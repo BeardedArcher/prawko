@@ -379,7 +379,7 @@ html, body {
 }
 
 body {
-    line-height: 0.7 !important;
+    /*line-height: 0.7 !important;*/
 }
 
 /* NAV BAR */
@@ -419,3 +419,7 @@ body {
 }
 
 /* END NAV BAR */
+
+.margin-center {
+    text-align: center;
+}

@@ -109,7 +109,7 @@ class QuestionController extends Controller {
                 $data['picture'] = $picture;
 
                 try {
-                    \Image::make(Request::file('uploaded_picture'))->fit(300,200)->save(QuestionsAbc::getImagePath(), $picture);
+                    \Image::make(Request::file('uploaded_picture'))->fit(500,333, function($constraint) { $constraint->upsize(); })->save(QuestionsAbc::getImagePath().$picture);
                 } catch (Exception $e) {
                     $errorMessages->add('picture', 'An error message.');
                 }

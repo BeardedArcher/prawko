@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
+    <div class="col-md-8 col-md-offset-2">
         
         <form enctype="multipart/form-data" action="dodaj-pytanie-tak-nie" method="POST">
 
