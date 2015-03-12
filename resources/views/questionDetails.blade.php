@@ -5,8 +5,10 @@
     <div class="row">
         <div class="col-md-8 margin-center col-md-offset-2">
 
-            <p><img src="images/{{ $question->picture }}"></p>
-            
+            @if ($question->picture)
+                <p><img src="images/{{ $question->picture }}"></p>
+            @endif
+
             <div class="panel panel-default">
                 <div class="panel-heading question-panel">{{ $question->question }}</div>
                 @if ($question instanceof App\QuestionsAbc)
